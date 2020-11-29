@@ -11,6 +11,7 @@ addons:
 services:
   - docker
 before_install:
+  - sudo apt-get install zstd
   - docker pull fr3akyphantom/droid-builder:latest
 before_script:
   - cd $HOME && mkdir twrp
@@ -22,10 +23,10 @@ before_script:
   - wget -q ${TWRP_SOURCE2} -O $HOME/twrp.tzst.ab
   - wget -q ${TWRP_SOURCE3} -O $HOME/twrp.tzst.ac
   - wget -q ${TWRP_SOURCE4} -O $HOME/twrp.tzst.ad
-  - tar -xJf twrp.tzst.aa --directory $HOME/twrp/ && rm twrp.tzst.aa
-  - tar -xJf twrp.tzst.ab --directory $HOME/twrp/ && rm twrp.tzst.ab
-  - tar -xJf twrp.tzst.ac --directory $HOME/twrp/ && rm twrp.tzst.ac
-  - tar -xJf twrp.tzst.ad --directory $HOME/twrp/ && rm twrp.tzst.ad
+  - tar -I zstd -xJf twrp.tzst.aa --directory $HOME/twrp/ && rm twrp.tzst.aa
+  - tar -I zstd -xJf twrp.tzst.ab --directory $HOME/twrp/ && rm twrp.tzst.ab
+  - tar -I zstd -xJf twrp.tzst.ac --directory $HOME/twrp/ && rm twrp.tzst.ac
+  - tar -I zstd -xJf twrp.tzst.ad --directory $HOME/twrp/ && rm twrp.tzst.ad
 script:
   # Replace your $$USERNAME$$, $$REPO_URL$$, $$BRAND$$, $$DEVICE$$
   - cd $HOME/twrp/ && git clone https://github.com/martenumberto/android_device_rsnav_s3.git device/qualcomm/msm8953_64
