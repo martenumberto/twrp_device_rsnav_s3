@@ -12,6 +12,7 @@ services:
   - docker
 before_install:
   - sudo apt-get install zstd
+  - sudo apt-get install dos2unix
   - docker pull fr3akyphantom/droid-builder:latest
 before_script:
   - cd $HOME && mkdir twrp
@@ -36,6 +37,8 @@ script:
   - |
     sudo docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/home/builder/twrp/:rw,z" -v "${HOME}/.ccache:/srv/ccache:rw,z" fr3akyphantom/droid-builder bash << EOF
     cd /home/builder/twrp/
+    sudo apt-get install dos2unix
+    sudo dos2unix ./build/envsetup.sh
     sudo sh ./build/envsetup.sh
     # Choose build flavor as "eng" or "userdebug"
     BUILD_FLAVOR="eng"
