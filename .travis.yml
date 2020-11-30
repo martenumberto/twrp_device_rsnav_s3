@@ -39,7 +39,7 @@ script:
     cd /home/builder/twrp/
     sudo apt-get install dos2unix
     sudo dos2unix ./build/envsetup.sh
-    sudo sh ./build/envsetup.sh
+    sudo bash ./build/envsetup.sh
     # Choose build flavor as "eng" or "userdebug"
     BUILD_FLAVOR="eng"
     sudo lunch omni_msm8953_64-${BUILD_FLAVOR}
