@@ -36,11 +36,11 @@ script:
   - |
     sudo docker run --rm -i -e USER_ID=$(id -u) -e GROUP_ID=$(id -g) -v "$(pwd):/home/builder/twrp/:rw,z" -v "${HOME}/.ccache:/srv/ccache:rw,z" fr3akyphantom/droid-builder bash << EOF
     cd /home/builder/twrp/
-    ./build/envsetup.sh
+    sudo ./build/envsetup.sh
     # Choose build flavor as "eng" or "userdebug"
     BUILD_FLAVOR="eng"
-    lunch omni_msm8953_64-${BUILD_FLAVOR}
-    make -j$(nproc --all) recoveryimage
+    sudo lunch omni_msm8953_64-${BUILD_FLAVOR}
+    sudo make -j$(nproc --all) recoveryimage
     exit
     EOF
 after_success:
